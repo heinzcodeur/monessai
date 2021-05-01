@@ -44,24 +44,26 @@ class Users implements UserInterface
     private $isVerified = false;
 
     /**
-     * @ORM\OneToMany(targetEntity=Annonces::class, mappedBy="users", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Ads::class, mappedBy="auteur", orphanRemoval=true)
      */
-    private $annonces;
+    private $ads;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $firstname;
 
     public function __construct()
     {
-        $this->annonces = new ArrayCollection();
+        $this->ads = new ArrayCollection();
     }
+
+
 
     public function getId(): ?int
     {
@@ -157,29 +159,29 @@ class Users implements UserInterface
     }
 
     /**
-     * @return Collection|Annonces[]
+     * @return Collection|Ads[]
      */
-    public function getAnnonces(): Collection
+    public function getAds(): Collection
     {
-        return $this->annonces;
+        return $this->ads;
     }
 
-    public function addAnnonce(Annonces $annonce): self
+    public function addAd(Ads $ad): self
     {
-        if (!$this->annonces->contains($annonce)) {
-            $this->annonces[] = $annonce;
-            $annonce->setUsers($this);
+        if (!$this->ads->contains($ad)) {
+            $this->ads[] = $ad;
+            $ad->setAuteur($this);
         }
 
         return $this;
     }
 
-    public function removeAnnonce(Annonces $annonce): self
+    public function removeAd(Ads $ad): self
     {
-        if ($this->annonces->removeElement($annonce)) {
+        if ($this->ads->removeElement($ad)) {
             // set the owning side to null (unless already changed)
-            if ($annonce->getUsers() === $this) {
-                $annonce->setUsers(null);
+            if ($ad->getAuteur() === $this) {
+                $ad->setAuteur(null);
             }
         }
 
@@ -191,7 +193,7 @@ class Users implements UserInterface
         return $this->name;
     }
 
-    public function setName(string $name): self
+    public function setName(?string $name): self
     {
         $this->name = $name;
 
@@ -203,10 +205,13 @@ class Users implements UserInterface
         return $this->firstname;
     }
 
-    public function setFirstname(string $firstname): self
+    public function setFirstname(?string $firstname): self
     {
         $this->firstname = $firstname;
 
         return $this;
     }
+
+
+
 }

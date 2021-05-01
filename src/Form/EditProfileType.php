@@ -2,20 +2,24 @@
 
 namespace App\Form;
 
+use App\Entity\Users;
 use Doctrine\DBAL\Types\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class CategoriesType extends AbstractType
+class EditProfileType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            /*->add('email')
+            ->add('roles')
+            ->add('password')
+            ->add('isVerified')*/
             ->add('name', \Symfony\Component\Form\Extension\Core\Type\TextType::class)
-           // ->add('slug')
-           // ->add('parent')
+            ->add('firstname', \Symfony\Component\Form\Extension\Core\Type\TextType::class)
             ->add('Valider', SubmitType::class)
         ;
     }
@@ -23,7 +27,7 @@ class CategoriesType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Categories::class,
+            'data_class' => Users::class,
         ]);
     }
 }

@@ -17,13 +17,17 @@
     <body>
 
     <header>
+
         <nav class="navbar shadow-1 primary">
-            <a href="#" target="_blank" class="navbar-brand">Axentix</a>
+            <a href="{{ path('app_home') }}" class="navbar-brand">MonEssai</a>
             <div class="navbar-menu ml-auto">
-                <a class="navbar-link" href="#">Link 1</a>
-                <a class="navbar-link" href="#">Link 2</a>
-                <a class="navbar-link" href="#">Link 3</a>
-                <a class="navbar-link" href="#">Link 4</a>
+                {% if(app.user is null) %}<a class="navbar-link" href="{{ path('app_login') }}">Connexion</a>
+                    <a class="navbar-link" href="{{ path("app_register") }}">S'inscrire</a>
+                {% else %}<a class="navbar-link" href="{{ path('app_logout') }}">Déconnexion</a>
+                    <a class="navbar-link" href="{{ path('users_home') }}">Profil</a>
+                {% endif %}
+                <a class="navbar-link" href="#">Annonces</a>
+
             </div>
         </nav>
     </header>

@@ -2,14 +2,14 @@
 
 namespace App\Entity;
 
-use App\Repository\AnnoncesRepository;
+use App\Repository\AdsRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * @ORM\Entity(repositoryClass=AnnoncesRepository::class)
+ * @ORM\Entity(repositoryClass=AdsRepository::class)
  */
-class Annonces
+class Ads
 {
     /**
      * @ORM\Id
@@ -35,7 +35,6 @@ class Annonces
     private $content;
 
     /**
-     * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
      */
     private $created_at;
@@ -46,16 +45,16 @@ class Annonces
     private $active;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Users::class, inversedBy="annonces")
+     * @ORM\ManyToOne(targetEntity=Users::class, inversedBy="ads")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $users;
+    private $auteur;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Categories::class, inversedBy="annonces")
+     * @ORM\ManyToOne(targetEntity=Cats::class, inversedBy="ads")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $categories;
+    private $category;
 
     public function getId(): ?int
     {
@@ -79,13 +78,6 @@ class Annonces
         return $this->slug;
     }
 
-    public function setSlug(string $slug): self
-    {
-        $this->slug = $slug;
-
-        return $this;
-    }
-
     public function getContent(): ?string
     {
         return $this->content;
@@ -103,6 +95,12 @@ class Annonces
         return $this->created_at;
     }
 
+    public function setCreatedAt(\DateTimeInterface $created_at): self
+    {
+        $this->created_at = $created_at;
+
+        return $this;
+    }
 
     public function getActive(): ?bool
     {
@@ -116,26 +114,26 @@ class Annonces
         return $this;
     }
 
-    public function getUsers(): ?Users
+    public function getAuteur(): ?Users
     {
-        return $this->users;
+        return $this->auteur;
     }
 
-    public function setUsers(?Users $users): self
+    public function setAuteur(?Users $auteur): self
     {
-        $this->users = $users;
+        $this->auteur = $auteur;
 
         return $this;
     }
 
-    public function getCategories(): ?Categories
+    public function getCategory(): ?Cats
     {
-        return $this->categories;
+        return $this->category;
     }
 
-    public function setCategories(?Categories $categories): self
+    public function setCategory(?Cats $category): self
     {
-        $this->categories = $categories;
+        $this->category = $category;
 
         return $this;
     }

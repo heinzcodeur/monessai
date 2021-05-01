@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\Categories;
+use App\Entity\Cats;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method Categories|null find($id, $lockMode = null, $lockVersion = null)
- * @method Categories|null findOneBy(array $criteria, array $orderBy = null)
- * @method Categories[]    findAll()
- * @method Categories[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Cats|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Cats|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Cats[]    findAll()
+ * @method Cats[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class CategoriesRepository extends ServiceEntityRepository
+class CatsRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Categories::class);
+        parent::__construct($registry, Cats::class);
     }
 
     // /**
-    //  * @return CategoriesController[] Returns an array of CategoriesController objects
+    //  * @return Cats[] Returns an array of Cats objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class CategoriesRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?CategoriesController
+    public function findOneBySomeField($value): ?Cats
     {
         return $this->createQueryBuilder('c')
             ->andWhere('c.exampleField = :val')

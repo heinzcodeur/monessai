@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello MainController!{% endblock %}
+{% block title %}MonEssai{% endblock %}
 
 {% block body %}
 <style>
@@ -9,16 +9,26 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
 
-    {% for message in app.flashes('success') %}
-        <div class="alert alert-success" role="alert">{{ message }}</div>
+    {% for message in app.flashes('already') %}
+        <!--div class="alert alert-success" role="alert"></div-->
+            <h3 style="color:darkred ">{{ app.user.email }} est {{ message }}</h3>
     {% endfor %}
+
+    <!--h1>Hello {{ controller_name }}! ✅</h1>
 
     This friendly message is coming from:
     <ul>
         <li>Your controller at <code><a href="{{ '/Users/sophia/Applications/MAMP/htdocs/monessai/src/Controller/MainController.php'|file_link(0) }}">src/Controller/MainController.php</a></code></li>
         <li>Your template at <code><a href="{{ '/Users/sophia/Applications/MAMP/htdocs/monessai/templates/main/index.html.twig'|file_link(0) }}">templates/main/index.html.twig</a></code></li>
-    </ul>
+    </ul-->
+
+    <div style="display: flex;justify-content: center;align-items: center;min-height: 60vh">
+
+    <h2 style="text-align: center">Mon essai de projet en Symfony 5</h2>
+    </div>
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
 </div>
 {% endblock %}
